@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import worker from '../dist/server/index.js';
+import {database} from './runtime.mjs';
+const DB=database();
+async function call(path,method='GET',data,token='') {
+ const response=await worker.fetch(new Request('https://test.local/api/'+path,{method,headers:{'X-SPM-Session':token,...(data?{'Content-Type':'application/json'}:{})},...(data?{body:JSON.stringify(data)}:{})}),{DB});
+ return {status:response.status,body:await response.json()};
+}
+const login=async(name,id)=>call('sign-in','POST',{name,id});
+let a=await login('QA Administrator','QA-ADMIN-2026');assert.equal(a.status,200);const token=a.body.sessionToken;assert.match(token,/^[a-f0-9]{64}$/);
+for(let i=0;i<5;i++)assert.equal((await call('users','GET',null,token)).status,200);
+assert.equal((await call('users')).status,401);
+let student=await login('Sapargeldiyev Muhammet','2412087111');assert.equal(student.status,200);
+for(const method of ['GET','POST','PATCH','DELETE'])assert.equal((await call(method==='PATCH'||method==='DELETE'?'users/roster-1':'users',method,method==='GET'?null:{},student.body.sessionToken)).status,403);
+let c=await call('users','POST',{name:'Test Learner',id:'TEST-100',role:'student'},token);assert.equal(c.status,201);
+let u=(await call('users','GET',null,token)).body.users.find(x=>x.name==='Test Learner');
+let old=await login(u.name,'TEST-100');assert.equal(old.status,200);
+assert.equal((await call('users/'+u.key,'PATCH',{name:'Updated Learner',id:'TEST-200',role:'teacher',revision:u.revision},token)).status,200);
+assert.equal((await login('Test Learner','TEST-100')).status,401);
+assert.equal((await call('session','GET',null,old.body.sessionToken)).body.user,null);
+let updated=await login('Updated Learner','TEST-200');assert.equal(updated.body.user.role,'teacher');
+u=(await call('users','GET',null,token)).body.users.find(x=>x.key===u.key);
+assert.equal((await call('users/'+u.key,'DELETE',{revision:u.revision},token)).status,200);
+assert.equal((await login('Updated Learner','TEST-200')).status,401);
+assert.equal((await call('session','GET',null,updated.body.sessionToken)).body.user,null);
+let self=(await call('users','GET',null,token)).body.users.find(x=>x.key==='qa-admin');
+assert.equal((await call('users/qa-admin','DELETE',{revision:self.revision},token)).status,409);
+assert.equal((await call('users/qa-admin','PATCH',{name:'QA Renamed',id:'QA-NEW',role:'admin',revision:self.revision},token)).status,200);
+assert.equal((await call('users','GET',null,token)).status,200);
+assert.equal((await call('session','GET',null,token)).body.user.name,'QA Renamed');
+assert.equal((await login('QA Administrator','QA-ADMIN-2026')).status,401);
+assert.equal((await login('QA Renamed','QA-NEW')).status,200);
+await call('sign-out','POST',{},token);assert.equal((await call('users','GET',null,token)).status,401);
+console.log('PASS: header sessions without cookies, repeated roster navigation, role enforcement, CRUD, revised login, session revocation, self-edit continuity, explicit logout');

@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tests/preview.mjs",
+    "build": "node scripts/build-worker.mjs",
+    "test": "node tests/accounts.test.mjs",
+    "start": "node local/server.mjs",
+    "setup-admin": "node local/setup-admin.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

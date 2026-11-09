@@ -1,0 +1,98 @@
+[
+  {
+    "key": "roster-1",
+    "name": "Olia",
+    "role": "admin",
+    "maskedId": "•••• -001",
+    "sample": false,
+    "match": "beeea7174d77deed2c055b18bc9316f35f0dd79771ffe4935540fe7531511653"
+  },
+  {
+    "key": "roster-2",
+    "name": "欧广宇",
+    "role": "teacher",
+    "maskedId": "•••• -001",
+    "sample": false,
+    "match": "7324648b8790a17c331d0c9444036f19d41b5c767769cac063835287cc3807f5"
+  },
+  {
+    "key": "roster-3",
+    "name": "Seyitnazarova Ogulgurban",
+    "role": "student",
+    "maskedId": "•••• 7106",
+    "sample": false,
+    "match": "062649d1dc8f3ffc13e11a11eafa74179f28240069a6ceed5a7ed01a4681b4ba"
+  },
+  {
+    "key": "roster-4",
+    "name": "Alexandrova Anastasia",
+    "role": "student",
+    "maskedId": "•••• 7101",
+    "sample": false,
+    "match": "f216fc2b4ed34a28227a501314a71d3c9003f60f83237c8ead21e2e01a42a7a2"
+  },
+  {
+    "key": "roster-5",
+    "name": "Nuryagdyyev Timur",
+    "role": "student",
+    "maskedId": "•••• 7110",
+    "sample": false,
+    "match": "d1fff35b379098754bdbd7b0350da926d1e5a1cce281ea9d9813c045903576ae"
+  },
+  {
+    "key": "roster-6",
+    "name": "Bashimov Shamyrat",
+    "role": "student",
+    "maskedId": "•••• 7107",
+    "sample": false,
+    "match": "4c66ed9466823a3c6c1c272ba365a156eaf55cd9c975768a7a46ff90669520dd"
+  },
+  {
+    "key": "roster-7",
+    "name": "Yazberdiyev Pena",
+    "role": "student",
+    "maskedId": "•••• 7112",
+    "sample": false,
+    "match": "0a13869c0c089bdbcacb4012f852bac5814524a4a752f6f3920a39b3c3a43985"
+  },
+  {
+    "key": "roster-8",
+    "name": "Jumadurdyyev Nazar",
+    "role": "student",
+    "maskedId": "•••• 7109",
+    "sample": false,
+    "match": "1172f73660ac605f773d79220da96fab70ea8b0db39b08809ee2f80c390fd09b"
+  },
+  {
+    "key": "roster-9",
+    "name": "李欣怡",
+    "role": "student",
+    "maskedId": "•••• S101",
+    "sample": true,
+    "match": "87978f6fc4cf16e160836992077e30280e00472216da90405a9bf4dea1f6a7a0"
+  },
+  {
+    "key": "roster-10",
+    "name": "张子涵",
+    "role": "student",
+    "maskedId": "•••• S102",
+    "sample": true,
+    "match": "30bb9b3e12a78824ad7b0ee8202de28d2af7669587e558b6b29b2ce4b4dce56a"
+  },
+  {
+    "key": "roster-11",
+    "name": "陈宇航",
+    "role": "student",
+    "maskedId": "•••• S103",
+    "sample": true,
+    "match": "11b9a09287c5a56f4ba4d62a6a50a2d223b05238f328f337c71b9a53cd788c86"
+  },
+  {
+    "key": "roster-12",
+    "name": "Sapargeldiyev Muhammet",
+    "role": "student",
+    "maskedId": "•••• 7111",
+    "sample": false,
+    "match": "5ea22862d0ac2a14e380b79e778358c7c47e6b7ba44d8dbf48eac06915096bd6"
+  }
+]
